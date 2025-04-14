@@ -50,4 +50,14 @@ app.use('/api/v1/reviews', reviewRoute);
 app.use("/api/v1/bookings", bookingRoute);
 app.use("/api/v1/admin", adminRoute);
 
+// Connect to database and start server
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}).catch(err => {
+    console.error('Failed to connect to database:', err);
+    process.exit(1);
+});
+
 export default app;
