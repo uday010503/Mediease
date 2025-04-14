@@ -50,7 +50,4 @@ app.use('/api/v1/reviews' , reviewRoute);
 app.use("/api/v1/bookings",bookingRoute);
 app.use("/api/v1/admin",adminRoute);
 
-app.listen(PORT , ()=>{
-    connectDB();
-    console.log(`Server is Running on Port ${PORT}`)
-})
+module.exports = app;
