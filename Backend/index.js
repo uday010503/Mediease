@@ -12,29 +12,29 @@ import adminRoute from './Routes/admin.js'
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000 ;
+const PORT = process.env.PORT || 8000;
 
 //to access docs     --multer
 app.use(express.static('public'))
 
 const corsOption = {
-    origin : true
+    origin: true
 }
 
-app.get('/' , (req,res)=>{
+app.get('/', (req, res) => {
     res.send("Api is working");
 })
 
-mongoose.set('strictQuery' , false)
-const connectDB = async() => {
-    try{
-        await mongoose.connect(process.env.MONGO_URL , {
+mongoose.set('strictQuery', false)
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URL, {
             // useNewUrlParser : true,
             // useUnifiedTopology : true
         })
         console.log(`MongoDB Database Connected`);
     }
-    catch(err){
+    catch (err) {
         console.log(err);
     }
 }
@@ -43,11 +43,11 @@ const connectDB = async() => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-app.use('/api/v1/auth' , authRoute);
-app.use('/api/v1/users' , userRoute);
-app.use('/api/v1/doctors' , doctorRoute);
-app.use('/api/v1/reviews' , reviewRoute);
-app.use("/api/v1/bookings",bookingRoute);
-app.use("/api/v1/admin",adminRoute);
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/doctors', doctorRoute);
+app.use('/api/v1/reviews', reviewRoute);
+app.use("/api/v1/bookings", bookingRoute);
+app.use("/api/v1/admin", adminRoute);
 
-module.exports = app;
+export default app;
